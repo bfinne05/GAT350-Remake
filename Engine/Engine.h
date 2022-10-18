@@ -39,6 +39,9 @@
 #include "Renderer/Font.h"
 #include "Renderer/Texture.h"
 #include "Renderer/Model.h"
+#include "Renderer/Shader.h"
+#include "Renderer/Program.h"
+#include "glm/glm.hpp"
 
 #include <memory>
 #include <vector>
@@ -54,6 +57,7 @@ namespace neu
 	extern ResourceManager g_resources;
 	extern PhysicsSystem g_physicsSystem;
 	extern EventManager g_eventManager;
+	
 	
 	class Engine : public Singleton<Engine>
 	{
