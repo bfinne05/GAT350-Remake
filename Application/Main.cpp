@@ -3,82 +3,49 @@
 #include <Renderer/Program.h>
 #include <Renderer/Material.h>
 
-//draw a square by making two triangles
-
-float points[] = {
-  -0.5f, -0.5f,  0.0f,
-   0.5f,  0.5f,  0.0f,
-   0.5f, -0.5f,  0.0f,
-
-   -0.5f ,-0.5f, 0.0f,
-   -0.5f, 0.5f, 0.0f,
-   0.5f, 0.5f, 0.0f
-};
-
-glm::vec3 colors[] = {
-	{1, 0,  1},
-	{0,  0,  0},
-	{0, 1,  0},
-
-	{1 ,0, 0},
-	{0, 0, 1},
-	{1, 1, 0},
-
-};
-
-glm::vec2 texcoords[] =
-{ //UVs
-	{0, 0},
-	{ 1,1 },
-	{ 1,0 },
-	{ 0,0 },
-	{ 0,1 },
-	{ 1,1 }
-};
-
 //new thing
 float vertices[] = {
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
 
-	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
 
-	-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
 
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
 
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
 
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f
+	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f
 };
 
 int main(int argc, char** argv)
@@ -94,21 +61,6 @@ int main(int argc, char** argv)
 	neu::g_renderer.CreateWindow("Neumont", 800, 600);
 
 	// create vertex buffer
-	GLuint pvbo = 0;
-	glGenBuffers(1, &pvbo);
-	glBindBuffer(GL_ARRAY_BUFFER, pvbo);
-	glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(float), points, GL_STATIC_DRAW); //make 18 points
-
-	// create vertex array
-	GLuint cvbo = 0;
-	glGenVertexArrays(1, &cvbo);
-	glBindVertexArray(cvbo);
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec3), colors, GL_STATIC_DRAW);
-
-	GLuint tvbo = 0;
-	glGenVertexArrays(1, &tvbo);
-	glBindVertexArray(tvbo);
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec2), texcoords, GL_STATIC_DRAW);
 	
 	//new thing
 	GLuint vbo = 0;
@@ -120,19 +72,21 @@ int main(int argc, char** argv)
 	glGenBuffers(1, &vao);
 	glBindBuffer(GL_ARRAY_BUFFER, vao);
 
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
 	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, pvbo);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 
 	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, cvbo);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (3 * sizeof(float)));
 
 	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, tvbo);
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (6 * sizeof(float)));
 
-	glm::mat4 mx{ 1 };
+	glm::mat4 model{ 1 };
+	glm::mat4 projection = glm::perspective(45.0f, neu::g_renderer.GetWidth() / (float)neu::g_renderer.GetHeight(), 0.01f, 100.0f);
+
+	glm::vec3 cameraPosition(0, 2, 2);
 
 	// create material 
 	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("Materials/box.mtrl");
@@ -140,29 +94,34 @@ int main(int argc, char** argv)
 
 	material->GetProgram()->SetUniform("tint", glm::vec3{ 1, 0, 0 });
 	material->GetProgram()->SetUniform("scale", 0.5f);
-	material->GetProgram()->SetUniform("transform", mx);
+	material->GetProgram()->SetUniform("transform", model);
 	// 1 0 0 0
 	// 0 1 0 0 
 	// 0 0 1 0
 	// 0 0 0 1
-
-	//glm::mat4 mx{ 1 };
-	//mx = glm::scale(glm::vec3{ 0.5, 0.5, 0.5 });
 	
 	bool quit = false;
 	while (!quit)
 	{
 		neu::Engine::Instance().Update();
 
+
 		if (neu::g_inputSystem.GetKeyState(neu::key_escape) == neu::InputSystem::KeyState::Pressed) quit = true;
 
-		material->GetProgram()->SetUniform("scale", std::sin(neu::g_time.time * 3)); //this will scale the shader
-		mx = glm::eulerAngleXYZ(0.0f, 0.0f, neu::g_time.time);
-		material->GetProgram()->SetUniform("transform", mx);
+		//add input system to move camera
+		//if (neu::g_inputSystem.GetKeyState(neu::key_escape) == neu::InputSystem::KeyState::Held) quit = true;
+
+		glm::mat4 view = glm::lookAt(glm::vec3(0, 2, 2), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+		//material->GetProgram()->SetUniform("scale", std::sin(neu::g_time.time * 3)); //this will scale the shader
+
+		model = glm::eulerAngleXYZ(0.0f, neu::g_time.time, 0.0f);
+		glm::mat4 mvp = projection * view * model;
+
+		material->GetProgram()->SetUniform("mvp", mvp);
 
 		neu::g_renderer.BeginFrame();
 
-		glDrawArrays(GL_TRIANGLES, 0, 6); //change the 3 to a 6
+		glDrawArrays(GL_TRIANGLES, 0, 36); //change the 3 to a 6
 
 		neu::g_renderer.EndFrame();
 	}
