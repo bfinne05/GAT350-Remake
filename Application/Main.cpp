@@ -57,16 +57,22 @@ int main(int argc, char** argv)
 	neu::Engine::Instance().Initialize();
 	neu::Engine::Instance().Register();
 	LOG("Engine Initialized");
-
+	
 	neu::g_renderer.CreateWindow("Neumont", 800, 600);
 
-	// create vertex buffer
+	auto scene = std::make_unique<neu::Scene>();
 
-	/*std::shared_ptr<neu::VertexBuffer> vb = neu::g_resources.Get<neu::VertexBuffer>("box");
-	vb->CreateVertexBuffer(sizeof(vertices), 36, vertices);
-	vb->SetAttribute(0, 3, 8 * sizeof(float), 0);
-	vb->SetAttribute(1, 3, 8 * sizeof(float), 3 * sizeof(float));
-	vb->SetAttribute(2, 2, 8 * sizeof(float), 6 * sizeof(float));*/
+	rapidjson::Document document;
+	bool success = neu::json::Load("scenes/basic.scn", document);
+	if (!success)
+	{
+		LOG("error loading scene file %s.", "Scenes/basic.scn");
+	}
+	else
+	{
+		scene->Read(document);
+		scene->Initialize();
+	}
 
 
 	
@@ -81,6 +87,7 @@ int main(int argc, char** argv)
 	}
 
 	auto m = neu::g_resources.Get<neu::Model>("models/ogre.obj");
+
 	// create material 
 	glm::vec3 cameraPosition(0, 0, 6);
 	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("Materials/box.mtrl");
@@ -101,43 +108,23 @@ int main(int argc, char** argv)
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_escape) == neu::InputSystem::KeyState::Pressed) quit = true;
 
-		//add input system to move camera 
-		
-		//camera x
-		if (neu::g_inputSystem.GetKeyState(neu::key_left) == neu::InputSystem::KeyState::Held) cameraPosition.x -= 2 * neu::g_time.deltaTime;
-		if (neu::g_inputSystem.GetKeyState(neu::key_right) == neu::InputSystem::KeyState::Held) cameraPosition.x += 2 * neu::g_time.deltaTime;
-		//camera y
-		if (neu::g_inputSystem.GetKeyState(neu::key_up) == neu::InputSystem::KeyState::Held) cameraPosition.y += 2 * neu::g_time.deltaTime;
-		if (neu::g_inputSystem.GetKeyState(neu::key_down) == neu::InputSystem::KeyState::Held) cameraPosition.y -= 2 * neu::g_time.deltaTime;
+		////reset view need to check later
+		//if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::KeyState::Held) glm::mat4 view = glm::lookAt(glm::vec3(0, 2, 2), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 
-		//camera z
-		if (neu::g_inputSystem.GetKeyState(neu::key_z) == neu::InputSystem::KeyState::Held) cameraPosition.z += 2 * neu::g_time.deltaTime;
-		if (neu::g_inputSystem.GetKeyState(neu::key_x) == neu::InputSystem::KeyState::Held) cameraPosition.z -= 2 * neu::g_time.deltaTime;
-
-		//reset view need to check later
-		if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::KeyState::Held) glm::mat4 view = glm::lookAt(glm::vec3(0, 2, 2), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
-
-		glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
+		//glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
 		//material->GetProgram()->SetUniform("scale", std::sin(neu::g_time.time * 3)); //this will scale the shader
 
 		//model = glm::eulerAngleXYZ(0.0f, neu::g_time.time, 0.0f);
 
+		scene->Update();
+
 		neu::g_renderer.BeginFrame();
 
-		//vb->Draw();
-		for (size_t i = 0; i < transforms.size(); i++)
-		{
-
-			transforms[i].rotation += glm::vec3(0, 90 * neu::g_time.deltaTime, 0);
-			glm::mat4 mvp = projection * view * model * (glm::mat4)transforms[i];
-			material->GetProgram()->SetUniform("mvp", mvp);
-			m->m_vertexBuffer.Draw();
-			//vb->Draw();
-		}
+		scene->Draw(neu::g_renderer);
 
 		neu::g_renderer.EndFrame();
 	}
-
+	scene->RemoveAll();
 	neu::Engine::Instance().Shutdown();
 
 	return 0;

@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Factory.h"
 #include <algorithm>
+#include "Engine.h"
 #include <iostream>
 
 namespace neu
@@ -29,6 +30,15 @@ namespace neu
 
 	void Scene::Draw(Renderer& renderer)
 	{
+		// get camera / set renderer view/projection 
+		auto camera = GetActorFromName("Camera");
+		if (camera)
+		{
+			g_renderer.SetView(camera->GetComponent<CameraComponent>() -> GetView());
+			g_renderer.SetProjection(camera->GetComponent<CameraComponent>() -> GetProjection());
+		}
+
+		// draw actors 
 		for (auto& actor : m_actors)
 		{
 			actor->Draw(renderer);

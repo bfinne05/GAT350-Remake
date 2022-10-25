@@ -29,6 +29,7 @@
 #include "Components/TilemapComponent.h"
 #include "Components/CharacterComponent.h"
 #include "Components/CameraComponent.h"
+#include "Components/CameraController.h"
 
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
@@ -59,6 +60,7 @@ namespace neu
 	extern ResourceManager g_resources;
 	extern PhysicsSystem g_physicsSystem;
 	extern EventManager g_eventManager;
+	extern CameraController g_cameraController;
 	
 	
 	class Engine : public Singleton<Engine>
