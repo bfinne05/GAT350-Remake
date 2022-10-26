@@ -63,7 +63,7 @@ int main(int argc, char** argv)
 	auto scene = std::make_unique<neu::Scene>();
 
 	rapidjson::Document document;
-	bool success = neu::json::Load("scenes/basic.scn", document);
+	bool success = neu::json::Load("scenes/basic_lit.scn", document);
 	if (!success)
 	{
 		LOG("error loading scene file %s.", "Scenes/basic.scn");
@@ -108,13 +108,11 @@ int main(int argc, char** argv)
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_escape) == neu::InputSystem::KeyState::Pressed) quit = true;
 
-		////reset view need to check later
-		//if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::KeyState::Held) glm::mat4 view = glm::lookAt(glm::vec3(0, 2, 2), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
-
-		//glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
-		//material->GetProgram()->SetUniform("scale", std::sin(neu::g_time.time * 3)); //this will scale the shader
-
-		//model = glm::eulerAngleXYZ(0.0f, neu::g_time.time, 0.0f);
+		auto actor = scene->GetActorFromName("Ogre");
+		if (actor)
+		{
+			actor->m_transform.rotation.y += neu::g_time.deltaTime * 90.0f;
+		}
 
 		scene->Update();
 

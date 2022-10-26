@@ -45,6 +45,20 @@ namespace neu
 		}
 	}
 
+	bool Scene::Create(std::string filename, ...)
+	{
+		rapidjson::Document document;
+		bool succsess = neu::json::Load(filename, document);
+		if (!succsess)
+		{
+			LOG("Error loading scene file %s", filename);
+			return false;
+		}
+		Read(document);
+		Initialize();
+		return true;
+	}
+
 	void Scene::Add(std::unique_ptr<Actor> actor)
 	{
 		actor->m_scene = this;
