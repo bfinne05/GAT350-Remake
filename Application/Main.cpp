@@ -3,51 +3,6 @@
 #include <Renderer/Program.h>
 #include <Renderer/Material.h>
 
-//new thing
-float vertices[] = {
-	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-
-	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-
-	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-
-	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-
-	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-
-	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f
-};
-
 int main(int argc, char** argv)
 {
 	LOG("Application Started...");
@@ -63,7 +18,7 @@ int main(int argc, char** argv)
 	auto scene = std::make_unique<neu::Scene>();
 
 	rapidjson::Document document;
-	bool success = neu::json::Load("scenes/basic_lit.scn", document);
+	bool success = neu::json::Load("scenes/texture.scn", document);
 	if (!success)
 	{
 		LOG("error loading scene file %s.", "Scenes/basic.scn");
@@ -74,32 +29,6 @@ int main(int argc, char** argv)
 		scene->Initialize();
 	}
 
-
-	
-
-	glm::mat4 model{ 1 };
-	glm::mat4 projection = glm::perspective(45.0f, neu::g_renderer.GetWidth() / (float)neu::g_renderer.GetHeight(), 0.01f, 100.0f);
-
-	std::vector<neu::Transform> transforms;
-	for (size_t i = 0; i < 100; i++)
-	{
-		transforms.push_back({ {neu::randomf(-10, 10) ,neu::randomf(-10, 10),0}, {neu::randomf(360),90,0}});
-	}
-
-	auto m = neu::g_resources.Get<neu::Model>("models/ogre.obj");
-
-	// create material 
-	glm::vec3 cameraPosition(0, 0, 6);
-	std::shared_ptr<neu::Material> material = neu::g_resources.Get<neu::Material>("Materials/box.mtrl");
-	material->Bind();
-
-	material->GetProgram()->SetUniform("tint", glm::vec3{ 1, 0, 0 });
-	material->GetProgram()->SetUniform("scale", 0.5f);
-	// 1 0 0 0
-	// 0 1 0 0 
-	// 0 0 1 0
-	// 0 0 0 1
-	
 	bool quit = false;
 	while (!quit)
 	{
@@ -108,10 +37,15 @@ int main(int argc, char** argv)
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_escape) == neu::InputSystem::KeyState::Pressed) quit = true;
 
-		auto actor = scene->GetActorFromName("Ogre");
-		if (actor)
+		auto actor1 = scene->GetActorFromName("Ogre");
+		
+		auto actor2 = scene->GetActorFromName("Box");
+
+		auto material = neu::g_resources.Get<neu::Material>("Materials/multi.mtrl");
+		if (material)
 		{
-			actor->m_transform.rotation.y += neu::g_time.deltaTime * 90.0f;
+			//material->uv_offset.y += neu::g_time.deltaTime;
+			//material->uv_offset.x += neu::g_time.deltaTime;
 		}
 
 		scene->Update();

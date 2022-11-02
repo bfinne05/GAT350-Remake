@@ -6,15 +6,21 @@ in layout(location = 2) vec3 vnormal;
  
 out vec2 texcoord;
 out vec3 color;
-
+ 
 struct Light
 {
 	vec3 ambient;
-	vec3 diffuse;
-	vec3 specular;
-	vec4 posistion;
+	vec3 color;
+	vec4 position;
 };
 
+struct Material
+{
+	vec3 color;
+	float shininess;
+};
+ 
+uniform Material material;
 uniform Light light;
 uniform mat4 model;
 uniform mat4 view;
@@ -24,17 +30,37 @@ void main()
 {
 	texcoord = vtexcoord;
  
- //diffuse
+	vec3 ambient = light.ambient * material.color;
+	// DIFFUSE
+	// create model view matrix
 	mat4 model_view = view * model;
+	// transform normals to view space
 	vec3 normal = mat3(model_view) * vnormal;
-	vec4 posistion = model_view * vec4(vposition, 1);
-	vec3 light_dir = normalize(vec3(light.posistion - posistion));
+	// transform positions to view space
+	vec4 position = model_view * vec4(vposition, 1);
+	// calculate light direction (unit vector)
+	vec3 light_dir = normalize(vec3(light.position - position));
+	
+	// calculate light intensity with dot product (normal * light direction)
+	float intensity = max(dot(light_dir, normal), 0);
+	vec3 diffuse = light.color * intensity;
+ 
+	// SPECULAR
+	vec3 specular = vec3(0);
+	if (intensity > 0)
+	{
+		vec3 reflection = reflect(-light_dir, normal);
+		vec3 view_dir = normalize(-vec3(position));
+		intensity = max(dot(reflection, view_dir), 0);
+		intensity = pow(intensity, 256.0);
 
-	float intensity = max(dot(light_dir, vnormal), 0);
-	vec3 diffuse = light.diffuse * intensity;
+		intensity = pow(intensity, material.shininess);
 
-	color = diffuse + light.ambient;
-
+		specular = light.color * material.color * intensity;
+	}
+ 
+	color = ambient + diffuse + specular;
+ 
 	mat4 mvp = projection * view * model;
 	gl_Position = mvp * vec4(vposition, 1.0);
 }
