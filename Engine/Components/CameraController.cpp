@@ -17,6 +17,12 @@ namespace neu
 
 		if (g_inputSystem.GetKeyState(key_down) == InputSystem::KeyState::Held)
 			m_owner->m_transform.position.y -= speed * g_time.deltaTime;
+
+		if (g_inputSystem.GetKeyState(key_z) == InputSystem::KeyState::Held)
+			m_owner->m_transform.position.z -= speed * g_time.deltaTime;
+
+		if (g_inputSystem.GetKeyState(key_x) == InputSystem::KeyState::Held)
+			m_owner->m_transform.position.z += speed * g_time.deltaTime;
 	}
 
 	bool CameraController::Write(const rapidjson::Value& value) const

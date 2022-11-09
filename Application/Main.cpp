@@ -38,7 +38,19 @@ int main(int argc, char** argv)
 		if (neu::g_inputSystem.GetKeyState(neu::key_escape) == neu::InputSystem::KeyState::Pressed) quit = true;
 
 		auto actor1 = scene->GetActorFromName("Ogre");
-		
+		if (actor1)
+		{
+			//actor1->m_transform.rotation.y += neu::g_time.deltaTime * 30;
+		}
+
+
+		actor1 = scene->GetActorFromName("Light");
+		if (actor1)
+		{
+			actor1->m_transform.position.x = std::sin(neu::g_time.time) * 2;
+		}
+
+
 		auto actor2 = scene->GetActorFromName("Box");
 
 		auto material = neu::g_resources.Get<neu::Material>("Materials/multi.mtrl");

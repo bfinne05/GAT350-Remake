@@ -1,6 +1,10 @@
 {
   "program": "shaders/texture_phong.prog",
-  "texture": "textures/llama.jpg",
+  "textures": [
+    "textures/lava-diffuse.png",
+    "textures/lava-specular.png",
+    "textures/lava-emissive.png"
+  ],
   "uv_tiling": [1, 1],
   "uv_offset": [0 ,0],
   "color": [

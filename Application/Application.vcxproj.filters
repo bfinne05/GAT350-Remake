@@ -25,6 +25,12 @@
     <Filter Include="Assets\Shaders">
       <UniqueIdentifier>{d92efb15-52aa-495a-82d8-15bb3bad27c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Lit">
+      <UniqueIdentifier>{ca340db1-f66a-49aa-b2e7-7978a05162fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\UnLit">
+      <UniqueIdentifier>{a873ea30-46f1-49e8-976c-afade848fdd1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -87,6 +93,15 @@
       <Filter>Assets\Shaders</Filter>
     </None>
     <None Include="..\Build\Assets\Shaders\texture_phong.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\normal_phong.frag">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\normal_phong.prog">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\normal_phong.vert">
       <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>

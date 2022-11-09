@@ -10,34 +10,6 @@
           0
         ],
         "scale": [
-          6,
-          6,
-          1
-        ],
-        "rotation": [
-          0,
-          0,
-          180
-        ]
-      },
-      "components": [
-        {
-          "type": "ModelComponent",
-          "model_name": "Models/quad.obj",
-          "material_name": "Materials/multi.mtrl"
-        }
-      ]
-    },
-    {
-      "type": "Actor",
-      "name": "Box",
-      "transform": {
-        "position": [
-          2,
-          0,
-          0
-        ],
-        "scale": [
           1,
           1,
           1
@@ -51,36 +23,8 @@
       "components": [
         {
           "type": "ModelComponent",
-          "model_name": "Models/cube.obj",
-          "material_name": "Materials/box.mtrl"
-        }
-      ]
-    },
-    {
-      "type": "Actor",
-      "name": "Plane",
-      "transform": {
-        "position": [
-          1,
-          -1,
-          0
-        ],
-        "scale": [
-          4,
-          4,
-          4
-        ],
-        "rotation": [
-          0,
-          0,
-          0
-        ]
-      },
-      "components": [
-        {
-          "type": "ModelComponent",
-          "model_name": "Models/plane.obj",
-          "material_name": "Materials/plane.mtrl"
+          "model_name": "Models/ogre.obj",
+          "material_name": "Materials/ogre.mtrl"
         }
       ]
     },
@@ -89,10 +33,15 @@
       "name": "Light",
       "transform": {
         "position": [
-          2,
           0,
-          5
+          2,
+          1
 
+        ],
+        "rotation": [
+          85,
+          0,
+          0
         ]
       },
       "components": [
@@ -102,7 +51,10 @@
             1,
             1,
             1
-          ]
+          ],
+          "type_name": "point",
+          "cutoff": 45.0,
+          "exponent": 1.0
         }
       ]
     },

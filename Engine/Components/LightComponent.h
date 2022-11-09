@@ -3,6 +3,13 @@
 
 namespace neu
 {
+	enum Type
+	{
+	Point,
+	Directional,
+	Spot
+	};
+
 	class LightComponent : public Component
 	{
 	public:
@@ -15,6 +22,9 @@ namespace neu
 
 	public:
 		glm::vec3 color{ 0 };
-		
+		float cutoff{ 45.0f };
+		float exponent{ 50.0f };
+
+		Type type = Type::Point;
 	};
 }

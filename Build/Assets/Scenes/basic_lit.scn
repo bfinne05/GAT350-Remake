@@ -23,7 +23,7 @@
       "components": [
         {
           "type": "ModelComponent",
-          "model_name": "Models/cube.obj",
+          "model_name": "Models/ogre.obj",
           "material_name": "Materials/ogre.mtrl"
         }
       ]
