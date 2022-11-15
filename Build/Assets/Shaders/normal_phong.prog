@@ -1,4 +1,0 @@
-{
-	"vertex_shader": "Shaders/normal_phong.vert",
-	"fragment_shader": "Shaders/normal_phong.frag"
-}

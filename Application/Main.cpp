@@ -15,6 +15,8 @@ int main(int argc, char** argv)
 	
 	neu::g_renderer.CreateWindow("Neumont", 800, 600);
 
+	neu::g_gui.Initialize(neu::g_renderer);
+
 	auto scene = std::make_unique<neu::Scene>();
 
 	rapidjson::Document document;
@@ -29,11 +31,14 @@ int main(int argc, char** argv)
 		scene->Initialize();
 	}
 
+	glm::vec3 pos = {0,0,0};
+
+
 	bool quit = false;
 	while (!quit)
 	{
 		neu::Engine::Instance().Update();
-
+		neu::g_gui.BeginFrame(neu::g_renderer);
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_escape) == neu::InputSystem::KeyState::Pressed) quit = true;
 
@@ -47,26 +52,27 @@ int main(int argc, char** argv)
 		actor1 = scene->GetActorFromName("Light");
 		if (actor1)
 		{
-			actor1->m_transform.position.x = std::sin(neu::g_time.time) * 2;
+			actor1->m_transform.position = pos;
 		}
-
+	ImGui::Begin("Hello");
+	ImGui::Button("Press me");
+	ImGui::SliderFloat("X", &pos[0], -5.0f, 5.0f);
+	ImGui::SliderFloat("Y", &pos[1], -5.0f, 5.0f);
+	ImGui::SliderFloat("Z", &pos[2], -5.0f, 5.0f);
+	ImGui::End();
 
 		auto actor2 = scene->GetActorFromName("Box");
-
-		auto material = neu::g_resources.Get<neu::Material>("Materials/multi.mtrl");
-		if (material)
-		{
-			//material->uv_offset.y += neu::g_time.deltaTime;
-			//material->uv_offset.x += neu::g_time.deltaTime;
-		}
 
 		scene->Update();
 
 		neu::g_renderer.BeginFrame();
 
-		scene->Draw(neu::g_renderer);
+		scene->Render(neu::g_renderer);
+		neu::g_gui.Draw();
 
 		neu::g_renderer.EndFrame();
+		neu::g_gui.EndFrame();
+
 	}
 	scene->RemoveAll();
 	neu::Engine::Instance().Shutdown();

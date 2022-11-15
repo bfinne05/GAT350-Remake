@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Serialization/Json.h"
-
 #include "Renderer/Model.h"
+#include "Renderer/GUI.h"
+
 #include "Core/Memory.h"
 #include "Core/File.h"
 #include "Core/Time.h"
@@ -62,6 +63,7 @@ namespace neu
 	extern PhysicsSystem g_physicsSystem;
 	extern EventManager g_eventManager;
 	extern CameraController g_cameraController;
+	extern GUI g_gui;
 	
 	
 	class Engine : public Singleton<Engine>

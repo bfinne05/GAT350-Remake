@@ -22,6 +22,7 @@ namespace neu
 		Renderer() = default;
 		~Renderer() = default;
 
+
 		void Initialize();
 		void Shutdown();
 
@@ -50,12 +51,15 @@ namespace neu
 
 		friend class Text;
 		friend class Texture;
+		friend class GUI;
+
+	public:
+		glm::vec3 clear_color{ 0, 0, 0 };
+		glm::vec3 ambient_color{ 0, 0, 0 };
 
 	private:
 		int m_width = 0;
 		int m_height = 0;
-
-		Color m_clearColor{ 0, 0, 0, 255 };
 
 		glm::mat4 m_view{ 1 };
 		glm::mat4 m_projection{ 1 };

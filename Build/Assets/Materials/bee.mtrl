@@ -1,0 +1,17 @@
+{
+  "program": "shaders/Lit/normal_texture.prog",
+  "textures": [
+    "textures/texture_Diffuse.png",
+    "textures/texture_normal.png"
+  ],
+    "color"
+    :
+    [
+      0.5,
+      0.25,
+      0
+    ],
+    "shininess"
+    :
+    256
+} 

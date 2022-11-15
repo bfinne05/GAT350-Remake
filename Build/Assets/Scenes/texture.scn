@@ -23,8 +23,8 @@
       "components": [
         {
           "type": "ModelComponent",
-          "model_name": "Models/ogre.obj",
-          "material_name": "Materials/ogre.mtrl"
+          "model_name": "Models/squirrel.1.glb",
+          "material_name": "Materials/bee.mtrl"
         }
       ]
     },
@@ -52,7 +52,7 @@
             1,
             1
           ],
-          "type_name": "point",
+          "type_name": "spot",
           "cutoff": 45.0,
           "exponent": 1.0
         }
