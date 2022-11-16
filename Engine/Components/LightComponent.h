@@ -3,7 +3,7 @@
 
 namespace neu
 {
-	neu::Program program;
+	class Program;
 
 	enum Type
 	{

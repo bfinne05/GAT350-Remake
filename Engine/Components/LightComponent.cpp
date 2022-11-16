@@ -44,7 +44,7 @@ namespace neu
 		glm::vec3 direction = m_owner->m_transform.getForward();
 
 		// create array light name from index (lights[0], ...) 
-		std::string lightName = "lights[" + index + ']';
+		std::string lightName = "lights[" + std::to_string(index) + ']';
 
 		programs->Use();
 		programs->SetUniform(lightName + ".type", (int)type);

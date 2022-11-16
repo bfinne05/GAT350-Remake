@@ -20,13 +20,14 @@ int main(int argc, char** argv)
 	auto scene = std::make_unique<neu::Scene>();
 
 	rapidjson::Document document;
-	bool success = neu::json::Load("scenes/texture.scn", document);
+	bool success = neu::json::Load("scenes/cube_map.scn", document);
 	if (!success)
 	{
 		LOG("error loading scene file %s.", "Scenes/basic.scn");
 	}
 	else
 	{
+
 		scene->Read(document);
 		scene->Initialize();
 	}
@@ -67,6 +68,7 @@ int main(int argc, char** argv)
 
 		neu::g_renderer.BeginFrame();
 
+		scene->PreRender(neu::g_renderer);
 		scene->Render(neu::g_renderer);
 		neu::g_gui.Draw();
 

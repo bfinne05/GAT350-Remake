@@ -1,0 +1,15 @@
+{
+  "program": "shaders/Lit/texture.prog",
+  "cubemap": ["textures/SantaMariaDeiMiracoli/"],
+    "cubemap_extension": ".jpg",
+    "color"
+    :
+    [
+      0.5,
+      0.25,
+      0
+    ],
+    "shininess"
+    :
+    32
+} 

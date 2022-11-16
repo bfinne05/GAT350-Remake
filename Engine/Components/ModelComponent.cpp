@@ -10,11 +10,10 @@ namespace neu
 	void ModelComponent::Draw(Renderer& renderer)
 	{
 		material->Bind();
-		// set model view projection matrix for model 
-		material->GetProgram() -> SetUniform("model", (glm::mat4)m_owner->m_transform);
-		material->GetProgram() -> SetUniform("view", renderer.GetView());
-		material->GetProgram() -> SetUniform("projection", renderer.GetProjection());
+		// set the model matrix (transform to world space) 
+		material->GetProgram()->SetUniform("model", (glm::mat4)m_owner->m_transform);
 
+		glDepthMask(depthTest);
 		model->m_vertexBuffer.Draw();
 	}
 
@@ -36,6 +35,8 @@ namespace neu
 		READ_DATA(value, material_name);
 		// get material from material name 
 		material = g_resources.Get<neu::Material>(material_name);
+
+		READ_DATA(value, depthTest);
 
 		return true;
 	}

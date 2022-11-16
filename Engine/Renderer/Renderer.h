@@ -29,7 +29,7 @@ namespace neu
 		void CreateWindow(const char* name, int width, int height, bool fullscreen = false);
 		void BeginFrame();
 		void EndFrame();
-		void SetClearColor(const Color& color) { m_clearColor = color; }
+		//void SetClearColor(const Color& color) { m_clearColor = color; }
 
 		void DrawLine(float x1, float y1, float x2, float y2);
 		void DrawLine(const Vector2& v1, const Vector2& v2, const Color& color);

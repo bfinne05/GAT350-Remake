@@ -1,5 +1,5 @@
 {
-  "program": "shaders/Lit/normal_texture.prog",
+  "program": "shaders/Lit/texture.prog",
   "textures": [
     "textures/texture_Diffuse.png",
     "textures/texture_normal.png"

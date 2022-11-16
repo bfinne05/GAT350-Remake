@@ -1,16 +1,20 @@
 #pragma once 
 #include "Framework/Component.h" 
 
+
 namespace neu
 {
+	class Program;
+
 	class CameraComponent : public Component
 	{
+
 	public:
 		CLASS_DECLARATION(CameraComponent)
 
 			void Update() override;
 
-
+		void SetProgram(std::shared_ptr<Program> programs);
 		void SetPerspective(float fov, float aspectRatio, float near, float far);
 
 		const glm::mat4& GetProjection() { return m_projection; }

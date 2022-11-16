@@ -20,14 +20,11 @@ namespace neu
         // va_start - enables access to variadic function arguments 
         va_start(args, filename);
 
-        // va_arg - accesses the next variadic function arguments 
-        Renderer& renderer = va_arg(args, Renderer);
-
         // va_end - ends traversal of the variadic function arguments 
         va_end(args);
 
         // create texture (returns true/false if successful) 
-        return Load(filename, renderer);
+        return Load(filename);
     }
 
     bool Texture::CreateFromSurface(SDL_Surface* surface, Renderer& renderer)
@@ -35,7 +32,7 @@ namespace neu
         return true;
     }
 
-    bool Texture::Load(const std::string& filename, Renderer& renderer)
+    bool Texture::Load(const std::string& filename)
     {
         // load surface 
         // !! call IMG_Load with c-string of filename 
@@ -58,6 +55,8 @@ namespace neu
         glTexParameteri(m_target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(m_target, GL_TEXTURE_WRAP_S, GL_REPEAT); //GL_REPEAT
         glTexParameteri(m_target, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+
 
         // !! call SDL_FreeSurface with surface as the parameter 
         // !! no need to keep surface after texture is created 

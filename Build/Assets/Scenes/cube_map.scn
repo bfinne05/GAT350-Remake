@@ -1,0 +1,153 @@
+{
+  "clear_color": [ 0, 0, 0 ],
+  "ambient_color": [ 0.2, 0.2, 0.2 ],
+
+  "actors": [
+    {
+      "type": "Actor",
+      "name": "skybox",
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/cube.obj",
+          "material_name": "Materials/skybox.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Ogre",
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/squirrel.1.glb",
+          "material_name": "Materials/bee.mtrl", 
+          "depthTest": true
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Light",
+      "transform": {
+        "position": [
+          0,
+          2,
+          1
+
+        ],
+        "rotation": [
+          85,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "LightComponent",
+          "color": [
+            1,
+            1,
+            0
+          ],
+          "type_name": "point",
+          "cutoff": 45.0,
+          "exponent": 1.0
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Light2",
+      "transform": {
+        "position": [
+          1,
+          3,
+          5
+        ]
+      },
+      "components": [
+        {
+          "type": "LightComponent",
+          "color": [
+            0,
+            1,
+            0
+          ],
+          "type_name": "point",
+          "cutoff": 25.0,
+          "exponent": 10.0
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Light3",
+      "transform": {
+        "position": [
+          -1,
+          3,
+          4
+        ]
+      },
+      "components": [
+        {
+          "type": "LightComponent",
+          "color": [
+            1,
+            0,
+            0
+          ],
+          "type_name": "point",
+          "cutoff": 25.0,
+          "exponent": 10.0
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Camera",
+      "transform": {
+        "position": [
+          0,
+          0,
+          4
+        ],
+        "rotation": [
+          0,
+          180,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "CameraComponent",
+          "fov": 45,
+          "near": 0.1,
+          "far": 100
+        },
+        {
+          "type": "CameraController",
+          "speed": 4
+        }
+      ]
+    }
+  ]
+}
