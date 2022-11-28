@@ -14,7 +14,8 @@ namespace neu
 		bool Create(std::string filename, ...) override;
 		bool Load(const std::vector<std::string>& filename);
 		std::vector<std::string> GenerateCubeMapNames(const std::string& basename, const std::string& extension);
-		static GLenum GetInternalFormat(GLuint format);
+		GLenum GetInternalFormat(GLuint format);
+		
 
 	private:
 

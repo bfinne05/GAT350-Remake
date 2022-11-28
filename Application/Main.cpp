@@ -17,23 +17,21 @@ int main(int argc, char** argv)
 
 	neu::g_gui.Initialize(neu::g_renderer);
 
-	auto scene = std::make_unique<neu::Scene>();
+	//create frambuffer texture
+	auto texture = std::make_shared<neu::Texture>();
+	texture->CreateTexture(512, 512);
+	neu::g_resources.Add<neu::Texture>("fb_texture", texture);
 
-	rapidjson::Document document;
-	bool success = neu::json::Load("scenes/cube_map.scn", document);
-	if (!success)
-	{
-		LOG("error loading scene file %s.", "Scenes/basic.scn");
-	}
-	else
-	{
+	//create framebuffer
+	auto framebuffer = neu::g_resources.Get<neu::Framebuffer>("framebuffer", "fb_texture");
+	framebuffer->Unbind();
+	
 
-		scene->Read(document);
-		scene->Initialize();
-	}
+	auto scene = neu::g_resources.Get<neu::Scene>("scenes/RTT.scn");
 
-	glm::vec3 pos = {0,0,0};
-
+	glm::vec3 rot = {0,0,0};
+	float ri = 1.04f;
+	float interpolation = 0.5;
 
 	bool quit = false;
 	while (!quit)
@@ -43,33 +41,58 @@ int main(int argc, char** argv)
 
 		if (neu::g_inputSystem.GetKeyState(neu::key_escape) == neu::InputSystem::KeyState::Pressed) quit = true;
 
-		auto actor1 = scene->GetActorFromName("Ogre");
+		auto actor1 = scene->GetActorFromName("Light");
 		if (actor1)
 		{
-			//actor1->m_transform.rotation.y += neu::g_time.deltaTime * 30;
+			actor1->m_transform.position = rot;
 		}
 
-
-		actor1 = scene->GetActorFromName("Light");
-		if (actor1)
+		auto program = neu::g_resources.Get<neu::Program>("shaders/FX/reflection_refraction.prog");
+		if (program)
 		{
-			actor1->m_transform.position = pos;
+			program->Use();
+			program->SetUniform("ri", ri);
+			program->SetUniform("interpolation", interpolation);
 		}
-	ImGui::Begin("Hello");
-	ImGui::Button("Press me");
-	ImGui::SliderFloat("X", &pos[0], -5.0f, 5.0f);
-	ImGui::SliderFloat("Y", &pos[1], -5.0f, 5.0f);
-	ImGui::SliderFloat("Z", &pos[2], -5.0f, 5.0f);
-	ImGui::End();
 
-		auto actor2 = scene->GetActorFromName("Box");
+		ImGui::Begin("Transform");
+		ImGui::DragFloat3("Rotation", &rot[0]);
+		ImGui::SliderFloat("Interpolation", &interpolation, 0, 1);
+		ImGui::SliderFloat("RI", &ri, 1, 2);
+		ImGui::End();
 
 		scene->Update();
 
-		neu::g_renderer.BeginFrame();
+		{
+			auto actor = scene->GetActorFromName("RTT");
+			if (actor)
+			{
+				actor->SetActive(false);
+			}
+		}
 
+		//renderer pass1 (renderer to framebuffer)
+		glViewport(0, 0, 800, 600);
+		framebuffer->Bind();
+		neu::g_renderer.BeginFrame();
 		scene->PreRender(neu::g_renderer);
 		scene->Render(neu::g_renderer);
+		framebuffer->Unbind();
+
+		{
+			auto actor = scene->GetActorFromName("RTT");
+			if (actor)
+			{
+				actor->SetActive(true);
+			}
+		}
+
+		//render pass 2 (render to screen)
+		glViewport(0, 0, 600, 600);
+		neu::g_renderer.BeginFrame();
+		scene->PreRender(neu::g_renderer);
+		scene->Render(neu::g_renderer);
+
 		neu::g_gui.Draw();
 
 		neu::g_renderer.EndFrame();

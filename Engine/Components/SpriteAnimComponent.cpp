@@ -1,4 +1,5 @@
 #include "SpriteAnimComponent.h"
+#include "Math/MathUtils.h"
 #include "Renderer/Renderer.h"
 #include "Framework/Actor.h"
 #include "Engine.h"
@@ -41,7 +42,7 @@ namespace neu
     Rect& SpriteAnimComponent::GetSource()
     {
         // calculate source rect
-        Vector2 cellSize = m_sequence->texture->GetSize() / Vector2{ m_sequence->num_columns, m_sequence->num_rows };
+        glm::vec2 cellSize = m_sequence->texture->GetSize() / glm::vec2{ m_sequence->num_columns, m_sequence->num_rows };
 
         int column = (frame - 1) % m_sequence->num_columns;
         int row = (frame - 1) / m_sequence->num_columns;

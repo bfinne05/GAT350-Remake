@@ -1,10 +1,10 @@
 {
   "program": "shaders/unlit/texture.prog",
-  "texture": "textures/wood.png",
+  "texture": ["fb_texture"],
   "color": [
     1,
     1,
     1
   ],
-  "shininess": 100
+  "shininess": 32
 }

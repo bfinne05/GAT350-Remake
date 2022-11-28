@@ -1,5 +1,6 @@
 #include "CubeMapTexture.h"
 #include "Core/Logger.h" 
+#include "Renderer/texture.h"
 #include <SDL.h> 
 #include <SDL_image.h> 
 #include <cstdarg> 
@@ -87,6 +88,27 @@ namespace neu
 
 	GLenum CubeMapTexture::GetInternalFormat(GLuint format)
 	{
-		return GLenum();
+		GLenum internalFormat = SDL_PIXELFORMAT_UNKNOWN;
+		switch (format)
+		{
+		case SDL_PIXELFORMAT_RGB888:
+		case SDL_PIXELFORMAT_RGB24:
+			internalFormat = GL_RGB;
+			break;
+		case SDL_PIXELFORMAT_BGR888:
+		case SDL_PIXELFORMAT_BGR24:
+			internalFormat = GL_BGR;
+			break;
+		case SDL_PIXELFORMAT_RGBA8888:
+		case SDL_PIXELFORMAT_RGBA32:
+			internalFormat = GL_RGBA;
+			break;
+		case SDL_PIXELFORMAT_BGRA8888:
+		case SDL_PIXELFORMAT_BGRA32:
+			internalFormat = GL_BGRA;
+			break;
+		}
+
+		return internalFormat;
 	}
 }

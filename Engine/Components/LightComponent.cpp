@@ -37,7 +37,7 @@ namespace neu
 		return true;
 	}
 
-	void LightComponent::SetProgram(std::shared_ptr<Program> programs, int index)
+	void LightComponent::SetProgram(std::shared_ptr<Program>& programs, int index)
 	{
 		// transform the light position by the view, puts light in model view space 
 		glm::vec4 position = g_renderer.GetView() * glm::vec4(m_owner -> m_transform.position, 1);
@@ -48,7 +48,7 @@ namespace neu
 
 		programs->Use();
 		programs->SetUniform(lightName + ".type", (int)type);
-		programs->SetUniform(lightName + ".ambient", glm::vec3(0.2f));
+	//	programs->SetUniform(lightName + ".ambient", glm::vec3(0.2f));
 		programs->SetUniform(lightName + ".color", color);
 		programs->SetUniform(lightName + ".position", position);
 		programs->SetUniform(lightName + ".direction", direction);

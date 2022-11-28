@@ -37,7 +37,6 @@ namespace neu
 		for (auto texture : textures)
 		{
 			// get texture resource 
-
 			m_textures.push_back(neu::g_resources.Get<neu::Texture>(texture));
 		}
 

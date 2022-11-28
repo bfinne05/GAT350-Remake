@@ -53,9 +53,6 @@
     <None Include="..\Build\Assets\Shaders\basic.prog">
       <Filter>Assets\Shaders</Filter>
     </None>
-    <None Include="..\Build\Assets\Shaders\basic.vert">
-      <Filter>Assets\Shaders</Filter>
-    </None>
     <None Include="..\Build\Assets\Materials\ogre.mtrl">
       <Filter>Assets\Materials</Filter>
     </None>
@@ -137,9 +134,6 @@
     <None Include="..\Build\Assets\Shaders\FX\toon.vert">
       <Filter>Assets\FX</Filter>
     </None>
-    <None Include="..\Build\Assets\Scenes\cube_map.scn">
-      <Filter>Assets\Scenes</Filter>
-    </None>
     <None Include="..\Build\Assets\Materials\skybox.mtrl">
       <Filter>Assets\Materials</Filter>
     </None>
@@ -151,6 +145,57 @@
     </None>
     <None Include="..\Build\Assets\Shaders\FX\skybox.frag">
       <Filter>Assets\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\cubemap.scn">
+      <Filter>Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\reflection.vert">
+      <Filter>Assets\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\reflection.frag">
+      <Filter>Assets\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\reflection.prog">
+      <Filter>Assets\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\reflection.mtrl">
+      <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\reflection.scn">
+      <Filter>Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\refraction.prog">
+      <Filter>Assets\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\refraction.vert">
+      <Filter>Assets\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\refraction.frag">
+      <Filter>Assets\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\refraction.mtrl">
+      <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\refraction.scn">
+      <Filter>Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\basic.vert">
+      <Filter>Assets\Lit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\reflection_refraction.frag">
+      <Filter>Assets\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\reflection_refraction.prog">
+      <Filter>Assets\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\reflection_refraction.vert">
+      <Filter>Assets\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\rtt.scn">
+      <Filter>Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\RTT.mtrl">
+      <Filter>Assets\Materials</Filter>
     </None>
   </ItemGroup>
 </Project>

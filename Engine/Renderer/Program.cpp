@@ -155,7 +155,6 @@ namespace neu
 		if (uniform == m_uniforms.end())
 		{
 			// get uniform in program 
-
 			GLint location = glGetUniformLocation(m_program, name.c_str());
 			if (location == -1)
 			{

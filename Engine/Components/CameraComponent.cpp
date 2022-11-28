@@ -20,7 +20,6 @@ namespace neu
 	void CameraComponent::SetPerspective(float fov, float aspectRatio, float near,
 		float far)
 	{
-
 		m_projection = glm::perspective(glm::radians(fov), aspectRatio, near, far);
 	}
 
