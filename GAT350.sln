@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Application", "Application\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{F95BB3D2-294C-4338-850F-70E610258BEF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RayTracer", "RayTracer\RayTracer.vcxproj", "{863786BE-3583-461A-9241-DA04712AAFDF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -33,14 +31,6 @@ Global
 		{F95BB3D2-294C-4338-850F-70E610258BEF}.Release|x64.Build.0 = Release|x64
 		{F95BB3D2-294C-4338-850F-70E610258BEF}.Release|x86.ActiveCfg = Release|Win32
 		{F95BB3D2-294C-4338-850F-70E610258BEF}.Release|x86.Build.0 = Release|Win32
-		{863786BE-3583-461A-9241-DA04712AAFDF}.Debug|x64.ActiveCfg = Debug|x64
-		{863786BE-3583-461A-9241-DA04712AAFDF}.Debug|x64.Build.0 = Debug|x64
-		{863786BE-3583-461A-9241-DA04712AAFDF}.Debug|x86.ActiveCfg = Debug|Win32
-		{863786BE-3583-461A-9241-DA04712AAFDF}.Debug|x86.Build.0 = Debug|Win32
-		{863786BE-3583-461A-9241-DA04712AAFDF}.Release|x64.ActiveCfg = Release|x64
-		{863786BE-3583-461A-9241-DA04712AAFDF}.Release|x64.Build.0 = Release|x64
-		{863786BE-3583-461A-9241-DA04712AAFDF}.Release|x86.ActiveCfg = Release|Win32
-		{863786BE-3583-461A-9241-DA04712AAFDF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
