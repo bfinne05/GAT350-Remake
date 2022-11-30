@@ -34,6 +34,9 @@
     <Filter Include="Assets\FX">
       <UniqueIdentifier>{eba3d2c6-c1d3-475f-b75a-eb3deb8dfce6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Post-Processing">
+      <UniqueIdentifier>{3bf04641-df08-4ee6-9e4b-413402d6e24a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -196,6 +199,21 @@
     </None>
     <None Include="..\Build\Assets\Materials\RTT.mtrl">
       <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Post-Processing\Post-Process.prog">
+      <Filter>Assets\Post-Processing</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Post-Processing\Post-Process.vert">
+      <Filter>Assets\Post-Processing</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Post-Processing\Post-Process.frag">
+      <Filter>Assets\Post-Processing</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\postprocess.mtrl">
+      <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\Post-Process.scn">
+      <Filter>Assets\Scenes</Filter>
     </None>
   </ItemGroup>
 </Project>

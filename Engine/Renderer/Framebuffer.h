@@ -18,9 +18,14 @@ namespace neu
 		void Bind();
 		void Unbind();
 
+		glm::ivec2 GetSize() const { return { m_width, m_height }; }
+
 	protected:
 		GLuint m_fbo = 0;
 		std::shared_ptr<Texture> m_texture;
+
+		int m_width = 0;
+		int m_height = 0;
 	};
 }
 

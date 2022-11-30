@@ -45,6 +45,9 @@
     <Filter Include="Source\External\imgui">
       <UniqueIdentifier>{46ee23b1-46d6-4700-93b4-8b14f4f40a71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Source Files">
+      <UniqueIdentifier>{3abbcfea-d3ac-48db-8408-a3d303d8e986}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">

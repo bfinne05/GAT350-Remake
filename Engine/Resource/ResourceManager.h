@@ -35,10 +35,8 @@ namespace neu
 	inline std::shared_ptr<T> ResourceManager::Get(const std::string& name, TArgs... args)
 	{
 		std::string lowerName = ToLower(name);
-		if (m_resources.find(name) != m_resources.end())
+		if (m_resources.find(lowerName) != m_resources.end())
 		{
-			if (m_resources.find(lowerName) != m_resources.end())
-
 			// found
 			return std::dynamic_pointer_cast<T>(m_resources[lowerName]); //name
 		}
@@ -52,6 +50,7 @@ namespace neu
 			return resource;
 		}
 	}
+
 
 	template <typename T>
 	inline std::vector<std::shared_ptr<T>> ResourceManager::Get()
